@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Board | Stock Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>Inventory Management Board</h1>
+        <p>Real‑time stock control · Low stock alerts · Live value</p>
+      </header>
+
+      <!-- Dashboard stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total products</div>
+          <div class="stat-value" id="totalProducts">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Low stock items</div>
+          <div class="stat-value" id="lowStockCount">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total inventory value</div>
+          <div class="stat-value" id="totalValue">$0.00</div>
+        </div>
+      </div>
+
+      <!-- Product form (add / edit) -->
+      <div class="card form-card">
+        <h2 id="formTitle">Add new product</h2>
+        <form id="productForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Product name</label>
+              <input
+                type="text"
+                id="productName"
+                placeholder="e.g. Wireless Mouse"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="productCategory">
+                <option value="Electronics">Electronics</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Food">Food</option>
+                <option value="Tools">Tools</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Quantity in stock</label>
+              <input
+                type="number"
+                id="productQuantity"
+                min="0"
+                value="0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Price ($)</label>
+              <input
+                type="number"
+                id="productPrice"
+                step="0.01"
+                min="0"
+                placeholder="0.00"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Reorder level (low stock)</label>
+              <input
+                type="number"
+                id="productReorder"
+                min="0"
+                value="5"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              Add product
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              id="cancelEditBtn"
+              style="display: none"
+            >
+              Cancel edit
+            </button>
+          </div>
+          <div id="formMessage" class="form-message"></div>
+        </form>
+      </div>
+
+      <!-- Search & filter -->
+      <div class="card filter-card">
+        <div class="filter-group">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder=" Search by name or category..."
+            autocomplete="off"
+          />
+          <select id="categoryFilter">
+            <option value="ALL">All categories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Food">Food</option>
+            <option value="Tools">Tools</option>
+          </select>
+          <button id="resetFilterBtn" class="btn-outline-small">Reset</button>
+        </div>
+      </div>
+
+      <!-- Product table -->
+      <div class="card table-card">
+        <div class="table-header">
+          <h2>Current stock</h2>
+          <button id="deleteAllBtn" class="btn-outline-small danger">
+            Delete all products
+          </button>
+        </div>
+        <div class="table-wrapper">
+          <table id="inventoryTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price ($)</th>
+                <th>Reorder level</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryBody">
+              <tr class="empty-row">
+                <td colspan="8">
+                  No products yet. Add your first product above.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <footer>
+        <p><i>Changes saved automatically ~ Miss - Techie</i></p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
